@@ -7,5 +7,5 @@ git status
 
 {
     git add .
-    git add ./Git-R.txt
+    git add .\Git-R.txt
 }
