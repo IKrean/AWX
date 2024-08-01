@@ -1,0 +1,7 @@
+---
+- hosts: Linux-01_Host
+  tasks:
+  - name: Creating an empty file
+    file:
+      path: "/home/test_file.txt"
+      state: touch
