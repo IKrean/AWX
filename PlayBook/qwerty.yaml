@@ -1,0 +1,9 @@
+---
+  - hosts: Linux-01_Host
+    tasks:
+     - name: Ping my hosts
+       ansible.builtin.ping:
+
+     - name: Print message
+       ansible.builtin.debug:
+        msg: Hello world
