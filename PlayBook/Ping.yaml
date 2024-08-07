@@ -1,7 +1,7 @@
-name: Ping Servers
-hosts: Linux-01_Host
-become: yes
+- name: Ping Servers
+  hosts: Linux-01_Host
+  become: yes
 
-tasks:
-- name: Task ping
-  ping:
+  tasks:
+  - name: Task ping
+    ping:
