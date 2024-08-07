@@ -11,9 +11,4 @@
 
     - name: Upgrade
       apt: 
-       upgrade: yes 
-
-    - name: Install apache2
-      apt:
-       pkg: apatche2
-       state: present
+       upgrade: yes
