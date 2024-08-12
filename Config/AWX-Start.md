@@ -1,3 +1,8 @@
+# ______________________________Ansible-AWX______________________________
+
+
+minikube start --cpus=2 --memory=2200mb --addons=ingress
+
 minikube start --cpus=4 --memory=6g --addons=ingress
 
 alias kubectl="minikube kubectl --"
