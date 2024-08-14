@@ -1,5 +1,5 @@
 ---
-  - hosts: WIN11_Hosts
+  - hosts: Win11_Host
     tasks:
      - name: Ping my hosts
        ansible.builtin.ping:
