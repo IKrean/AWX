@@ -1,5 +1,5 @@
 ---
-  - hosts: linux-01
+  - hosts: Linux-01_Host
     tasks:
 
      - name: Print message
