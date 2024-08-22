@@ -1,5 +1,5 @@
 ---
-  - hosts: Win11_Host
+  - hosts: linux-01
     tasks:
 
      - name: Print message

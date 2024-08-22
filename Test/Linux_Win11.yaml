@@ -1,3 +1,6 @@
 ---
 - name: Pobierz plik z linux i zapisz na Windows
-  hists: 
+  hosts:
+  tasks:
+   - name: Odczytaj zawartość pliku TEST.txt na Linuxie
+   
