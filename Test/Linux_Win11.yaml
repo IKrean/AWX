@@ -6,7 +6,7 @@
      command: cat /patch/TEST.txt
      register: file_content
 
-     - name: Wyświetl zawartość pliku TEST.txt
+     - name: Wyświetl zawartość pliku 
        debug:
         msg: "{{ file_content.stdout }}"
 
