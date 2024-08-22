@@ -2,7 +2,7 @@
 - name: Pobierz plik z linux i zapisz na Windows
   hosts: Ubuntu_Host
   tasks:
-   - name: Odczytaj zawartość pliku TEST.txt na Linuxie
+   - name: Odczytaj zawartość pliku na Linuxi 
      command: cat /patch/TEST.txt
      register: file_content
 
@@ -20,9 +20,9 @@
 
      - name: Pobierz plik z linux
        fetch:
-       src: /path/TEST.txt
-       dest: /tmp/ansible_files/TEST.txt
-       flat: yes
+        src: /path/TEST.txt
+        dest: /tmp/ansible_files/TEST.txt
+        flat: yes
 
 - name: Skopiuj plik na Linux
   hosts: Linux-01_Host
