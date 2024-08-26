@@ -3,7 +3,7 @@
   hosts: linux-01_Host
   tasks:
     - name: Odczytaj zawartość pliku na Linuxie 
-      command: cat /home/ubuntu-22/patch/TEST.txt
+      command: cat /home/linux-01/patch/TEST.txt
       register: file_content
 
     - name: Wyświetl zawartość pliku 
@@ -20,7 +20,7 @@
 
     - name: Pobierz plik z Linuxa
       fetch:
-        src: /home/ubuntu-22/patch/TEST.txt
+        src: /home/linux-01/patch/TEST.txt
         dest: /tmp/ansible_files/TEST.txt
         flat: yes
 
