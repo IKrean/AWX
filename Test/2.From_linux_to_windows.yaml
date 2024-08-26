@@ -32,4 +32,4 @@
     - name: Skopiuj plik do Windows
       win_copy:
         src: /tmp/ansible_files/TEST.txt
-        dest: C:\data\TEST.txt
+        dest: C:\ansible\TEST.txt
