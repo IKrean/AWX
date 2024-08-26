@@ -11,7 +11,7 @@
         msg: "{{ file_content.stdout }}"
 
     - name: Wylistuj pliki w katalogu /path na Linuxie
-      command: ls /path
+      command: ls /home/linux-01/patch
       register: files_ls 
 
     - name: Wyświetl listę plików
