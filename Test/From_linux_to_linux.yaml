@@ -1,9 +1,9 @@
 ---
 - name: Pobierz plik z Linuxa i zapisz na serwerze linux_server
-  hosts: linux-01_Host
+  hosts: ubuntu-22
   tasks:
     - name: Odczytaj zawartość pliku na Linuxie 
-      command: cat /patch/TEST.txt
+      command: cat /home/ubuntu-22/patch/TEST.txt
       register: file_content
 
     - name: Wyświetl zawartość pliku 
@@ -20,12 +20,12 @@
 
     - name: Pobierz plik z Linuxa
       fetch:
-        src: /path/TEST.txt
+        src: /home/ubuntu-22/patch/TEST.txt
         dest: /tmp/ansible_files/TEST.txt
         flat: yes
 
 - name: Skopiuj plik na Linuxa
-  hosts: ubuntu-22
+  hosts: linux-01_Host
   vars:
     nazwa: "pliktestowy"
   tasks:
