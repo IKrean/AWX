@@ -1,0 +1,36 @@
+---
+- name: Download file from linux and save to windows
+  hosts: linux-01_Host
+  tasks:
+    - name: Read file content on Linux 
+        command: cat /patch/TEST.txt
+        register: file_content
+
+        - name: View file contents 
+          debug:
+            msg: "{{ file_content.stdout }}"
+
+        - name: LS linux
+          command: ls /path
+          register: files_ls 
+
+        - name: View file contents
+          debug:
+            msg: "{{ file_ls.stdout }}"
+
+        - name: Download file from linux
+          fetch:
+            src: /path/TEST.txt
+            dest: /tmp/ansible_files/TEST.txt
+            flat: yes
+
+- name: Copy file to Linux
+  hosts: Linux-01_Host
+  vars:
+    nazwa: "pliktestowy"
+  tasks:
+    - name: Copy file to Linux
+        copy:
+          src: /tmp/ansible_file/TEST.txt
+          dest: /home.TEST.txt
+       
