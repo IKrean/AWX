@@ -36,7 +36,7 @@
 
 - name: Dodaj dane do bazy danych PostgreSQL
   hosts: localhost
-  gather_facts: no
+  gather_facts: yes  # Włącz gromadzenie faktów
   vars:
     db_name: AWX
     db_user: postgres
@@ -55,6 +55,5 @@
     - name: Wstaw dane do tabeli PostgreSQL
       ansible.builtin.shell:
         cmd: "{{ psql_cmd }}"
-        # Zmienna środowiskowa PGPASSWORD może być używana do przekazania hasła bezpośrednio
         environment:
           PGPASSWORD: "{{ db_password }}"
