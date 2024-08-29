@@ -1,0 +1,56 @@
+---
+- name: Pobierz plik z Linux i zapisz na Windows
+  hosts: ubuntu-22_Host
+  tasks:
+    - name: Odczytaj zawartość pliku TEST.txt na Linuxie
+      command: cat /home/ubuntu-22/patch/TEST.txt
+      register: file_content
+
+    - name: Wyświetl zawartość pliku TEST.txt
+      debug:
+        msg: "{{ file_content.stdout }}"
+
+    - name: LS linux
+      command: ls /home/ubuntu-22/patch
+      register: files_ls 
+
+    - name: Wyświetl zawartość plików
+      debug:
+        msg: "{{ files_ls.stdout }}"
+
+    - name: Pobierz plik z Linux
+      fetch:
+        src: /home/ubuntu-22/patch/TEST.txt
+        dest: /tmp/ansible_files/TEST.txt
+        flat: yes
+
+- name: Skopiuj plik na Windows
+  hosts: Windows_Host
+  vars:
+    nazwa: "pliktestowy"
+  tasks:
+    - name: Skopiuj plik do Windows
+      win_copy:
+        src: /tmp/ansible_files/TEST.txt
+        dest: C:\ansible\TEST.txt
+
+- name: Dodaj dane do PostgreSQL
+  hosts: localhost
+  vars:
+    db_host: 127.0.0.1
+    db_name: AWX
+    db_user: postgres
+    db_password: 1992
+    file_name: "TEST.txt"
+    playbook_name: "3.Linux_SQL_windows.yaml"
+  tasks:
+    - name: Wstaw dane do tabeli PostgreSQL
+      postgresql_query:
+        db: "{{ db_name }}"
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_password }}"
+        host: "{{ db_host }}"
+        port: 5432
+        query: |
+          INSERT INTO your_table_name (id, file_name, playbook_name, date)
+          VALUES (DEFAULT, '{{ file_name }}', '{{ playbook_name }}', NOW());
