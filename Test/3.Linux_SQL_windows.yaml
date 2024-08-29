@@ -56,9 +56,3 @@
     - name: Wstaw dane do tabeli PostgreSQL
       community.general.command:
         cmd: "{{ psql_cmd }}"
-        # Jeżeli używasz innej lokalizacji pliku .pgpass, dodaj ścieżkę do zmiennej środowiskowej PGPASSFILE
-        # environment:
-        #   PGPASSFILE: /path/to/.pgpass
-      # Jeżeli masz na celu bezpieczeństwo hasła, skorzystaj z pliku .pgpass:
-      # (Upewnij się, że plik .pgpass jest odpowiednio zabezpieczony i zawiera dane w formacie: hostname:port:database:username:password)
-
