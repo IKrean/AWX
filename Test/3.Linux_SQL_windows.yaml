@@ -45,7 +45,7 @@
     playbook_name: "3.Linux_SQL_windows.yaml"
   tasks:
     - name: Wstaw dane do tabeli PostgreSQL
-      community.general.postgresql_query:
+      ansible.builtin.shell:
         db: "{{ db_name }}"
         login_user: "{{ db_user }}"
         login_password: "{{ db_password }}"
