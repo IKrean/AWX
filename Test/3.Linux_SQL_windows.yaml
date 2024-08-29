@@ -45,7 +45,7 @@
     playbook_name: "3.Linux_SQL_windows.yaml"
   tasks:
     - name: Wstaw dane do tabeli PostgreSQL
-      postgresql_query:
+      community.postgresql.postgresql_query:
         db: "{{ db_name }}"
         login_user: "{{ db_user }}"
         login_password: "{{ db_password }}"
