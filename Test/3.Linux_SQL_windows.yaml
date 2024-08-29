@@ -33,7 +33,7 @@
       win_copy:
         src: /tmp/ansible_files/TEST.txt
         dest: C:\ansible\TEST.txt
-        
+
 - name: Dodaj dane do bazy danych PostgreSQL
   hosts: localhost
   gather_facts: no
@@ -47,11 +47,14 @@
     file_name: "TEST.txt"
     playbook_name: "Przykładowy Playbook"
     date: "{{ ansible_date_time.iso8601 }}"
-    psql_cmd: >
+    psql_cmd: |
       psql -U {{ db_user }} -h {{ db_host }} -p {{ db_port }} -d {{ db_name }} -c
       "INSERT INTO {{ table_name }} (file_name, playbook_name, date) VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');"
 
   tasks:
     - name: Wstaw dane do tabeli PostgreSQL
-      community.general.command:
+      ansible.builtin.shell:
         cmd: "{{ psql_cmd }}"
+        # Zmienna środowiskowa PGPASSWORD może być używana do przekazania hasła bezpośrednio
+        environment:
+          PGPASSWORD: "{{ db_password }}"
