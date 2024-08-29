@@ -36,7 +36,7 @@
 
 - name: Dodaj dane do bazy danych PostgreSQL
   hosts: localhost
-  gather_facts: no
+  gather_facts: yes  # Włącz gromadzenie faktów, aby uzyskać zmienną `ansible_date_time`
   vars:
     db_name: AWX
     db_user: postgres
@@ -46,7 +46,7 @@
     table_name: awx_db
     file_name: "TEST.txt"
     playbook_name: "Przykładowy Playbook"
-    date: "{{ lookup('pipe', 'date -u +%Y-%m-%dT%H:%M:%SZ') }}"  # Ustaw datę ręcznie
+    date: "{{ ansible_date_time.iso8601 }}"  # Używa gromadzonej daty i godziny
     psql_cmd: |
       psql -U {{ db_user }} -h {{ db_host }} -p {{ db_port }} -d {{ db_name }} -c
       "INSERT INTO {{ table_name }} (file_name, playbook_name, date) VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');"
@@ -57,3 +57,4 @@
         cmd: "{{ psql_cmd }}"
         environment:
           PGPASSWORD: "{{ db_password }}"
+
