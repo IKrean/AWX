@@ -33,8 +33,7 @@
       win_copy:
         src: /tmp/ansible_files/TEST.txt
         dest: C:\ansible\TEST.txt
-
----
+        
 - name: Dodaj dane do bazy danych PostgreSQL
   hosts: localhost
   gather_facts: no
