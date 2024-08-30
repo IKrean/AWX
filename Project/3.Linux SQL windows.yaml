@@ -38,7 +38,7 @@
   collections:
     - community.postgresql
   vars:
-    db_name: AWX
+    db_name: ansible-awx-db
     db_user: postgres
     db_password: 1992
     db_host: 127.0.0.1
