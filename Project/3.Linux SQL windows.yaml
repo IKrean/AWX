@@ -34,9 +34,7 @@
 
 - name: Dodaj dane do bazy danych PostgreSQL
   hosts: localhost
-  gather_facts: yes  
-  collections:
-    - community.postgresql
+  gather_facts: yes
   vars:
     db_name: ansible-awx-db
     db_user: postgres
@@ -49,12 +47,12 @@
     date: "{{ ansible_date_time.iso8601 }}"  # Używa gromadzonej daty i godziny
 
   tasks:
-  - name: Wstaw dane do tabeli PostgreSQL
-    postgresql_query:
-      db: "{{ db_name }}"
-      login_user: "{{ db_user }}"
-      login_password: "{{ db_password }}"
-      port: "{{ db_port }}"
-      query: |
-        INSERT INTO {{ table_name }} (file_name, playbook_name, date)
-        VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');
+    - name: Wstaw dane do tabeli PostgreSQL
+      postgresql_query:
+        db: "{{ db_name }}"
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_password }}"
+        port: "{{ db_port }}"
+        query: |
+          INSERT INTO {{ table_name }} (file_name, playbook_name, date)
+          VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');
