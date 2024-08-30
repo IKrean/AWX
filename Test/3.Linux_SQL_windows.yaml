@@ -26,8 +26,6 @@
 
 - name: Skopiuj plik na Windows
   hosts: Windows_Host
-  vars:
-    nazwa: "pliktestowy"
   tasks:
     - name: Skopiuj plik do Windows
       win_copy:
@@ -47,12 +45,10 @@
     file_name: "TEST.txt"
     playbook_name: "Przykładowy Playbook"
     date: "{{ ansible_date_time.iso8601 }}"  # Używa gromadzonej daty i godziny
-    psql_cmd: |
-      psql -U {{ db_user }} -h {{ db_host }} -p {{ db_port }} -d {{ db_name }} -c
-      "INSERT INTO {{ table_name }} (file_name, playbook_name, date) VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');"
 
   tasks:
-  - name: Wstaw dane do tabeli PostgreSQL
-    ansible.builtin.raw: "PGPASSWORD={{ db_password }} psql -h {{ db_host }} -U {{ db_user }} -d {{ db_name }} -c '{{ sql_query }}'"
-
-
+    - name: Wstaw dane do tabeli PostgreSQL
+      ansible.builtin.raw: |
+        PGPASSWORD={{ db_password }} psql -h {{ db_host }} -U {{ db_user }} -d {{ db_name }} -c "
+        INSERT INTO {{ table_name }} (file_name, playbook_name, date) 
+        VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');"
