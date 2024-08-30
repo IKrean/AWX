@@ -1,6 +1,0 @@
-- name: Install community.postgresql collection
-  hosts: awx
-  tasks:
-    - name: Install community.postgresql using ansible-galaxy
-      ansible.builtin.command:
-        cmd: ansible-galaxy collection install community.postgresql
