@@ -48,7 +48,8 @@
 
   tasks:
     - name: Wstaw dane do tabeli PostgreSQL
-      ansible.builtin.raw: |
-        PGPASSWORD={{ db_password }} psql -h {{ db_host }} -U {{ db_user }} -d {{ db_name }} -c "
-        INSERT INTO {{ table_name }} (file_name, playbook_name, date) 
-        VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');"
+  ansible.builtin.raw: |
+    PGPASSWORD={{ db_password }} /usr/bin/psql -h {{ db_host }} -U {{ db_user }} -d {{ db_name }} -c "
+    INSERT INTO {{ table_name }} (file_name, playbook_name, date) 
+    VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');"
+
