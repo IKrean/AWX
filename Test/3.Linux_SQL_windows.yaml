@@ -35,6 +35,8 @@
 - name: Dodaj dane do bazy danych PostgreSQL
   hosts: localhost
   gather_facts: yes  
+  collections:
+    - community.postgresql
   vars:
     db_name: AWX
     db_user: postgres
@@ -56,6 +58,3 @@
       query: |
         INSERT INTO {{ table_name }} (file_name, playbook_name, date)
         VALUES ('{{ file_name }}', '{{ playbook_name }}', '{{ date }}');
-
-  
-
